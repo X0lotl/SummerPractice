@@ -3,6 +3,7 @@ import PySimpleGUI as sg
 import matplotlib.pyplot as plt
 import numpy as np
 from PIL import Image, ImageTk
+import cmath
 
 
 def load_image_to_label(image, window):
@@ -12,16 +13,7 @@ def load_image_to_label(image, window):
         print('Unable to open image')
 
 
-def main():
-    min_x = 0
-    max_x = 0
-    number_of_dots = 0
-
-    sg.theme('Purple')
-
-    plt.title('Парабола Нейля')
-    plt.grid()
-
+def generate_layout():
     layout = [
 
         [sg.Text('Введіть значення парметру a'), sg.InputText(),
@@ -36,6 +28,20 @@ def main():
         [sg.Save()],
         [sg.Submit(), sg.Cancel()]
     ]
+    return layout
+
+
+def main():
+    min_x = 0
+    max_x = 0
+    number_of_dots = 0
+
+    sg.theme('Purple')
+
+    plt.title('Парабола Нейля')
+    plt.grid()
+
+    layout = generate_layout()
 
     window = sg.Window('Парабола Нейля', layout)
     while True:
@@ -53,7 +59,9 @@ def main():
                 print('Incorrect input')
 
             x = np.linspace(min_x, max_x, number_of_dots)
-            y = a * pow(x, 1.5)
+
+            #y = a * cmath.exp(3/2 * cmath.log(x))
+            y = a * (x ** 1.5)
 
             if y[len(y) - 1] > 0:
                 plt.plot(x, y, color='blue')
@@ -71,3 +79,4 @@ def main():
 
 
 main()
+

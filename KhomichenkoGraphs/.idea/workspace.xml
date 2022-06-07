@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c9390464-cc01-4219-9f22-99afcd77d30a" name="Changes" comment="finish graphs">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="c9390464-cc01-4219-9f22-99afcd77d30a" name="Changes" comment="remove govno code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/semicubicalParabola.png" beforeDir="false" afterPath="$PROJECT_DIR$/semicubicalParabola.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/semicubicalParabola.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/temporaryFiles/test.png" beforeDir="false" afterPath="$PROJECT_DIR$/temporaryFiles/test.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test.png" beforeDir="false" />
     </list>
@@ -65,7 +64,7 @@
       <option name="presentableId" value="Default" />
       <updated>1654529463234</updated>
       <workItem from="1654529467664" duration="10633000" />
-      <workItem from="1654552620002" duration="4737000" />
+      <workItem from="1654552620002" duration="6515000" />
     </task>
     <task id="LOCAL-00001" summary="finish graphs">
       <created>1654539337567</created>
@@ -74,7 +73,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654539337567</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="remove govno code">
+      <created>1654630399001</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1654630399001</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -93,9 +99,10 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="finish graphs" />
-    <option name="LAST_COMMIT_MESSAGE" value="finish graphs" />
+    <MESSAGE value="remove govno code" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove govno code" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/KhomichenkoGraphs$main.coverage" NAME="main Coverage Results" MODIFIED="1654630056283" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/KhomichenkoGraphs$main.coverage" NAME="main Coverage Results" MODIFIED="1654644997903" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

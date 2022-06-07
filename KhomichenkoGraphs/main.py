@@ -1,24 +1,29 @@
+import io
 import PySimpleGUI as sg
 import matplotlib.pyplot as plt
 import numpy as np
 from PIL import Image, ImageTk
-import shutil
-
-PATH_TO_TEMPORARY_PNG = 'temporaryFiles/test.png'
 
 
-def load_image(path, window):
+def load_image_to_label(image, window):
     try:
-        image = Image.open(path)
-        image.thumbnail((640, 480))
-        photo_img = ImageTk.PhotoImage(image)
-        window['image'].update(data=photo_img)
+        window['image'].update(data=ImageTk.PhotoImage(image))
     except:
-        print(f'Unable to open {path}')
+        print('Unable to open image')
 
 
 def main():
+    min_x = 0
+    max_x = 0
+    number_of_dots = 0
+
+    sg.theme('Purple')
+
+    plt.title('Парабола Нейля')
+    plt.grid()
+
     layout = [
+
         [sg.Text('Введіть значення парметру a'), sg.InputText(),
          ],
         [sg.Text('Введіть нижню границю функції'), sg.InputText(),
@@ -33,28 +38,36 @@ def main():
     ]
 
     window = sg.Window('Парабола Нейля', layout)
-    while True:  # The Event Loop
+    while True:
         event, values = window.read()
 
         if event in (None, 'Exit', 'Cancel'):
             break
         if event == 'Submit':
-            a = int(values[0])
-            minX = int(values[1])
-            maxX = int(values[2])
-            numberOfDots = int(values[3])
+            try:
+                a = float(values[0])
+                min_x = int(values[1])
+                max_x = int(values[2])
+                number_of_dots = int(values[3])
+            except:
+                print('Incorrect input')
 
-            x = np.linspace(minX, maxX, numberOfDots)
+            x = np.linspace(min_x, max_x, number_of_dots)
             y = a * pow(x, 1.5)
 
-            plt.grid()
-            plt.title('Парабола Нейля')
-            plt.plot(x, y)
+            if y[len(y) - 1] > 0:
+                plt.plot(x, y, color='blue')
+            else:
+                plt.plot(x, y, color='red')
 
-            plt.savefig(PATH_TO_TEMPORARY_PNG)
-            load_image(PATH_TO_TEMPORARY_PNG, window)
+            buf = io.BytesIO()
+            plt.savefig(buf, format='png')
+            buf.seek(0)
+
+            load_image_to_label(Image.open(buf), window)
+
         if event == 'Save':
-            shutil.copy(PATH_TO_TEMPORARY_PNG, 'semicubicalParabola.png')
+            plt.savefig('semiCubicalParabola.png')
 
 
 main()

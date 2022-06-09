@@ -40,8 +40,18 @@ def configurate_plt():
     plt.grid()
 
 
-def add_graph_to_plot():
-    return 0
+def add_graph_to_plot(values, window):
+    plot_data = parce_input_data(values)
+
+    x = np.linspace(plot_data.get_min_x(), plot_data.get_max_x(), plot_data.get_number_of_dots())
+    y = plot_data.get_a() * pow(x, 1.5)
+
+    if y[len(y) - 1] > 0:
+        plt.plot(x, y, color='blue')
+    else:
+        plt.plot(x, y, color='red')
+
+    load_image_to_label(Image.open(save_figure_to_image()), window)
 
 
 def generate_layout():
@@ -57,7 +67,7 @@ def generate_layout():
          ],
         [sg.Image(key='image')],
         [sg.Save()],
-        [sg.Submit('Add'), sg.Cancel('Refresh')]
+        [sg.Submit('Add'), sg.Cancel('Clear')]
     ]
     return layout
 
@@ -83,26 +93,14 @@ def main():
         if event in (None, 'Exit'):
             break
 
-        if event == 'Refresh':
+        if event == 'Clear':
             plt.clf()
             configurate_plt()
 
             load_image_to_label(Image.open(save_figure_to_image()), window)
 
         if event == 'Add':
-            plot_data = parce_input_data(values)
-
-            x = np.linspace(plot_data.get_min_x(), plot_data.get_max_x(), plot_data.get_number_of_dots())
-
-            # y = a * cmath.exp(3/2 * cmath.log(x))
-            y = plot_data.get_a() * pow(x, 1.5)
-
-            if y[len(y) - 1] > 0:
-                plt.plot(x, y, color='blue')
-            else:
-                plt.plot(x, y, color='red')
-
-            load_image_to_label(Image.open(save_figure_to_image()), window)
+            add_graph_to_plot(values, window)
 
         if event == 'Save':
             plt.savefig('semiCubicalParabola.png')

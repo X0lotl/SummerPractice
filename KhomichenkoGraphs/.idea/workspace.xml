@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c9390464-cc01-4219-9f22-99afcd77d30a" name="Changes" comment="Refactor code">
+    <list default="true" id="c9390464-cc01-4219-9f22-99afcd77d30a" name="Changes" comment="add parce input data, add PlotData constructor">
       <change afterPath="$PROJECT_DIR$/PlotData.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
@@ -72,7 +72,7 @@
       <option name="presentableId" value="Default" />
       <updated>1654529463234</updated>
       <workItem from="1654529467664" duration="10633000" />
-      <workItem from="1654552620002" duration="13597000" />
+      <workItem from="1654552620002" duration="13930000" />
     </task>
     <task id="LOCAL-00001" summary="finish graphs">
       <created>1654539337567</created>
@@ -95,7 +95,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654645112348</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="add parce input data, add PlotData constructor">
+      <created>1654768880426</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1654768880426</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -116,9 +123,10 @@
     <MESSAGE value="finish graphs" />
     <MESSAGE value="remove govno code" />
     <MESSAGE value="Refactor code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor code" />
+    <MESSAGE value="add parce input data, add PlotData constructor" />
+    <option name="LAST_COMMIT_MESSAGE" value="add parce input data, add PlotData constructor" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/KhomichenkoGraphs$main.coverage" NAME="main Coverage Results" MODIFIED="1654768548889" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/KhomichenkoGraphs$main.coverage" NAME="main Coverage Results" MODIFIED="1654768642201" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

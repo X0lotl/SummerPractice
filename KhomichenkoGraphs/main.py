@@ -3,7 +3,29 @@ import PySimpleGUI as sg
 import matplotlib.pyplot as plt
 import numpy as np
 from PIL import Image, ImageTk
-import cmath
+from PlotData import PlotData
+
+
+def parce_input_data(values):
+    try:
+        a = float(values[0])
+        min_x = int(values[1])
+        max_x = int(values[2])
+        number_of_dots = int(values[3])
+    except:
+        print('Incorrect input data')
+        return PlotData(0, 0, 1, 1)
+
+    if number_of_dots > 0:
+        if min_x > max_x:
+            min_x, max_x = max_x, min_x
+
+        if min_x >= 0:
+            plot_data = PlotData(a, min_x, max_x, number_of_dots)
+            return plot_data
+
+    print('Incorrect input data')
+    return PlotData(0, 0, 1, 1)
 
 
 def load_image_to_label(image, window):
@@ -11,6 +33,15 @@ def load_image_to_label(image, window):
         window['image'].update(data=ImageTk.PhotoImage(image))
     except:
         print('Unable to open image')
+
+
+def configurate_plt():
+    plt.title('Парабола Нейля')
+    plt.grid()
+
+
+def add_graph_to_plot():
+    return 0
 
 
 def generate_layout():
@@ -26,57 +57,55 @@ def generate_layout():
          ],
         [sg.Image(key='image')],
         [sg.Save()],
-        [sg.Submit(), sg.Cancel()]
+        [sg.Submit('Add'), sg.Cancel('Refresh')]
     ]
     return layout
 
 
+def save_figure_to_image():
+    image = io.BytesIO()
+    plt.savefig(image, format='png')
+    image.seek(0)
+
+    return image
+
+
 def main():
-    min_x = 0
-    max_x = 0
-    number_of_dots = 0
-
     sg.theme('Purple')
-
-    plt.title('Парабола Нейля')
-    plt.grid()
-
     layout = generate_layout()
-
     window = sg.Window('Парабола Нейля', layout)
+
+    configurate_plt()
+
     while True:
         event, values = window.read()
 
-        if event in (None, 'Exit', 'Cancel'):
+        if event in (None, 'Exit'):
             break
-        if event == 'Submit':
-            try:
-                a = float(values[0])
-                min_x = int(values[1])
-                max_x = int(values[2])
-                number_of_dots = int(values[3])
-            except:
-                print('Incorrect input')
 
-            x = np.linspace(min_x, max_x, number_of_dots)
+        if event == 'Refresh':
+            plt.clf()
+            configurate_plt()
 
-            #y = a * cmath.exp(3/2 * cmath.log(x))
-            y = a * (x ** 1.5)
+            load_image_to_label(Image.open(save_figure_to_image()), window)
+
+        if event == 'Add':
+            plot_data = parce_input_data(values)
+
+            x = np.linspace(plot_data.get_min_x(), plot_data.get_max_x(), plot_data.get_number_of_dots())
+
+            # y = a * cmath.exp(3/2 * cmath.log(x))
+            y = plot_data.get_a() * pow(x, 1.5)
 
             if y[len(y) - 1] > 0:
                 plt.plot(x, y, color='blue')
             else:
                 plt.plot(x, y, color='red')
 
-            buf = io.BytesIO()
-            plt.savefig(buf, format='png')
-            buf.seek(0)
-
-            load_image_to_label(Image.open(buf), window)
+            load_image_to_label(Image.open(save_figure_to_image()), window)
 
         if event == 'Save':
             plt.savefig('semiCubicalParabola.png')
 
 
 main()
-

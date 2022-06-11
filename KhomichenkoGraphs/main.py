@@ -1,9 +1,33 @@
 import io
+import math
+
 import PySimpleGUI as sg
 import matplotlib.pyplot as plt
 import numpy as np
 from PIL import Image, ImageTk
 from PlotData import PlotData
+
+
+def semi_cubical_parabola(a, x):
+    return a * pow(x, 1.5)
+
+
+def half_of_16_task(window):
+    x = []
+    y = []
+
+    i = np.linspace(-200, 200, 1050)
+
+    for i in i:
+        r = math.sin(0.99 * math.pi * i)
+        x.append(r * math.cos(math.pi * i))
+        y.append(r * math.sin(math.pi * i))
+
+    plt.title('R(a) = sin(0.99a)')
+
+    plt.plot(x, y, linewidth=0.1)
+
+    load_image_to_label(Image.open(save_figure_to_image()), window)
 
 
 def parce_input_data(values):
@@ -44,7 +68,7 @@ def add_graph_to_plot(values, window):
     plot_data = parce_input_data(values)
 
     x = np.linspace(plot_data.get_min_x(), plot_data.get_max_x(), plot_data.get_number_of_dots())
-    y = plot_data.get_a() * pow(x, 1.5)
+    y = semi_cubical_parabola(plot_data.get_a(), x)
 
     if y[len(y) - 1] > 0:
         plt.plot(x, y, color='blue')
@@ -66,7 +90,7 @@ def generate_layout():
         [sg.Text('Введіть кількість точок'), sg.InputText(),
          ],
         [sg.Image(key='image')],
-        [sg.Save()],
+        [sg.Save(), sg.Save('Task16')],
         [sg.Submit('Add'), sg.Cancel('Clear')]
     ]
     return layout
@@ -83,7 +107,7 @@ def save_figure_to_image():
 def main():
     sg.theme('Purple')
     layout = generate_layout()
-    window = sg.Window('Парабола Нейля', layout)
+    window = sg.Window('Khomichenko Graphs', layout)
 
     configurate_plt()
 
@@ -104,6 +128,12 @@ def main():
 
         if event == 'Save':
             plt.savefig('semiCubicalParabola.png')
+
+        if event == 'Task16':
+            plt.clf()
+            configurate_plt()
+
+            half_of_16_task(window)
 
 
 main()

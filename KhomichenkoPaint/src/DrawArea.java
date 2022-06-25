@@ -65,24 +65,4 @@ public class DrawArea extends JComponent {
     public void setPaintColor(Color color) {
         g2.setPaint(color);
     }
-
-    public void black() {
-        g2.setPaint(Color.black);
-    }
-
-    public void red() {
-        g2.setPaint(Color.red);
-    }
-
-    public void magenta() {
-        g2.setPaint(Color.magenta);
-    }
-
-    public void green() {
-        g2.setPaint(Color.green);
-    }
-
-    public void blue() {
-        g2.setPaint(Color.blue);
-    }
 }

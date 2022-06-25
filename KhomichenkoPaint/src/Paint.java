@@ -1,31 +1,31 @@
+import Buttons.ColorButton;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
+import java.lang.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Paint{
-    //HashMap<JButton, Color> colorButtons = new HashMap<>();
-    JButton clearBtn, blackBtn, blueBtn, greenBtn, redBtn, magentaBtn;
+    List<ColorButton> colorButtons = new ArrayList<>();
+
     DrawArea drawArea;
-    ActionListener actionListener = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            if (e.getSource() == clearBtn) {
-                drawArea.clear();
-            } else if (e.getSource() == blackBtn) {
-                drawArea.black();
-            } else if (e.getSource() == blueBtn) {
-                drawArea.blue();
-            } else if (e.getSource() == redBtn) {
-                drawArea.red();
-            } else if (e.getSource() == magentaBtn) {
-                drawArea.magenta();
-            } else if (e.getSource() == greenBtn) {
-                drawArea.green();
-            }
-        }
-    };
+
+
+    private void addAllColorButtons() {
+        colorButtons.add(new ColorButton( Color.black, drawArea::setPaintColor));
+        colorButtons.add(new ColorButton( Color.darkGray, drawArea::setPaintColor));
+        colorButtons.add(new ColorButton( Color.lightGray, drawArea::setPaintColor));
+        colorButtons.add(new ColorButton( Color.blue, drawArea::setPaintColor));
+        colorButtons.add(new ColorButton( Color.cyan, drawArea::setPaintColor));
+        colorButtons.add(new ColorButton( Color.magenta, drawArea::setPaintColor));
+        colorButtons.add(new ColorButton( Color.red, drawArea::setPaintColor));
+        colorButtons.add(new ColorButton( Color.yellow, drawArea::setPaintColor));
+        colorButtons.add(new ColorButton( Color.orange, drawArea::setPaintColor));
+
+    }
 
     public static void main(String[] args) {
         new Paint().show();
@@ -40,36 +40,15 @@ public class Paint{
 
         content.add(drawArea, BorderLayout.CENTER);
 
-        JPanel controls = new JPanel();
+        JPanel colorButtonsPanel = new JPanel();
+        JPanel controlsPanel = new JPanel();
 
-        clearBtn  = new JButton("Clear");
-        clearBtn.addActionListener(actionListener);
+        addAllColorButtons();
 
-        blackBtn = new JButton("Black");
-        blackBtn.addActionListener(actionListener);
+        colorButtons.forEach(colorButtonsPanel::add);
+        content.add(colorButtonsPanel, BorderLayout.SOUTH);
 
-        blueBtn = new JButton("Blue");
-        blueBtn.addActionListener(actionListener);
-
-        greenBtn = new JButton("Green");
-        greenBtn.addActionListener(actionListener);
-
-        redBtn = new JButton("Red");
-        redBtn.addActionListener(actionListener);
-
-        magentaBtn = new JButton("Magenta");
-        magentaBtn.addActionListener(actionListener);
-
-        controls.add(greenBtn);
-        controls.add(blackBtn);
-        controls.add(blueBtn);
-        controls.add(redBtn);
-        controls.add(magentaBtn);
-        controls.add(clearBtn);
-
-        content.add(controls, BorderLayout.SOUTH);
-
-        frame.setSize(600, 600);
+        frame.setSize(1280, 720);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);

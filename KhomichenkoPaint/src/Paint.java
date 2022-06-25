@@ -41,9 +41,10 @@ public class Paint{
         content.add(drawArea, BorderLayout.CENTER);
 
         JPanel colorButtonsPanel = new JPanel();
+        addAllColorButtons();
+
         JPanel controlsPanel = new JPanel();
 
-        addAllColorButtons();
 
         colorButtons.forEach(colorButtonsPanel::add);
         content.add(colorButtonsPanel, BorderLayout.SOUTH);
